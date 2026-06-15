@@ -1,0 +1,19 @@
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
+main {
+  overflow-x: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+.navbar {
+  z-index: 1000;
+}

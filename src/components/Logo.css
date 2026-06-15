@@ -1,0 +1,64 @@
+.logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+.logo__ennasr {
+  background: var(--color-bg);
+  color: var(--color-white);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  padding: 0.2rem 0.5rem;
+  margin-bottom: -1px;
+}
+
+.logo__main {
+  display: flex;
+  transform: skewX(-8deg);
+}
+
+.logo__smart {
+  background: var(--color-white);
+  color: var(--color-bg);
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.6rem;
+}
+
+.logo__gym {
+  background: var(--gradient-neon);
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.6rem;
+}
+
+.logo--lg .logo__ennasr {
+  font-size: 0.65rem;
+  padding: 0.25rem 0.6rem;
+}
+
+.logo--lg .logo__smart,
+.logo--lg .logo__gym {
+  font-size: 1.8rem;
+  padding: 0.2rem 0.8rem;
+}
+
+.logo--sm .logo__smart,
+.logo--sm .logo__gym {
+  font-size: 1.1rem;
+}
+
+.logo--sm .logo__ennasr {
+  font-size: 0.45rem;
+}

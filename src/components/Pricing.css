@@ -1,0 +1,212 @@
+.pricing {
+  position: relative;
+  padding: 8rem 0;
+  overflow: hidden;
+}
+
+.pricing__bg-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(var(--purple-rgb), 0.12) 0%, transparent 70%),
+    url('/images/info/pricing.jpg') center / cover no-repeat;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.pricing__header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pricing__tagline {
+  color: var(--color-cyan);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 16px var(--color-cyan-glow);
+}
+
+.pricing__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 1;
+  min-height: 420px;
+}
+
+.pricing-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 2px;
+  background: var(--gradient-neon-border);
+  transition: all var(--transition);
+  opacity: 1;
+  visibility: visible;
+}
+
+.pricing-card__inner {
+  height: 100%;
+  padding: 2.5rem 2rem;
+  background: rgba(10, 10, 20, 0.95);
+  border-radius: calc(var(--radius-lg) - 2px);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 50px rgba(var(--purple-rgb), 0.35), 0 0 80px rgba(var(--cyan-rgb), 0.15);
+}
+
+.pricing-card--popular {
+  background: var(--gradient-neon);
+  box-shadow: 0 0 60px rgba(var(--purple-rgb), 0.3);
+}
+
+.pricing-card--popular .pricing-card__inner {
+  background: linear-gradient(160deg, rgba(var(--purple-rgb), 0.35) 0%, rgba(10, 10, 20, 0.97) 55%);
+}
+
+.pricing-card__badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.4rem 1.25rem;
+  background: var(--gradient-neon);
+  color: var(--color-white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  box-shadow: 0 4px 24px var(--color-purple-glow);
+  z-index: 2;
+}
+
+.pricing-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.pricing-card__price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-bottom: 0.25rem;
+}
+
+.pricing-card__amount {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  background: var(--gradient-neon);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.pricing-card--popular .pricing-card__amount {
+  -webkit-text-fill-color: var(--color-white);
+  background: none;
+  color: var(--color-white);
+  text-shadow: 0 0 30px rgba(var(--cyan-rgb), 0.5);
+}
+
+.pricing-card__currency {
+  font-size: 1.1rem;
+  color: var(--color-gray-300);
+  font-weight: 600;
+}
+
+.pricing-card__original {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--color-gray-500);
+  text-decoration: line-through;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-card__features {
+  margin: 1.5rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.pricing-card__features li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--color-gray-300);
+}
+
+.pricing-card__features svg {
+  color: var(--color-cyan);
+  flex-shrink: 0;
+}
+
+.pricing-card__cta {
+  width: 100%;
+  margin-top: auto;
+}
+
+.pricing__benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem 2rem;
+  padding: 2rem;
+  background: rgba(14, 14, 28, 0.75);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.pricing__benefit {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--color-gray-300);
+}
+
+.pricing__benefit-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-magenta);
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px var(--color-magenta-glow);
+}
+
+@media (max-width: 900px) {
+  .pricing__cards {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-inline: auto;
+    min-height: auto;
+  }
+
+  .pricing__benefits {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,119 @@
+.rules {
+  position: relative;
+  padding: 8rem 0;
+  overflow: hidden;
+}
+
+.rules__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(var(--purple-rgb), 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(var(--cyan-rgb), 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-elevated) 100%);
+  pointer-events: none;
+}
+
+.rules__header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3.5rem;
+}
+
+.rules__desc {
+  color: var(--color-gray-300);
+  margin-top: 1rem;
+  line-height: 1.7;
+}
+
+.rules__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-cyan);
+}
+
+.rules__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.rules__item {
+  position: relative;
+  padding: 2rem 1.5rem 1.75rem;
+  background: rgba(14, 14, 28, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(var(--accent-rgb), 0.22);
+  border-radius: var(--radius-md);
+  text-align: center;
+  transition: all var(--transition);
+  overflow: hidden;
+}
+
+.rules__item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-neon-soft);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.rules__item:hover {
+  border-color: rgba(var(--cyan-rgb), 0.5);
+  transform: translateY(-6px);
+  box-shadow: 0 0 32px rgba(var(--purple-rgb), 0.22);
+}
+
+.rules__item:hover::before {
+  opacity: 1;
+}
+
+.rules__number {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: rgba(var(--accent-rgb), 0.35);
+}
+
+.rules__icon {
+  position: relative;
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 10px rgba(var(--cyan-rgb), 0.35));
+}
+
+.rules__item p {
+  position: relative;
+  font-size: 0.82rem;
+  color: var(--color-gray-100);
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .rules__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .rules__grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,129 @@
+.stats {
+  padding: 8rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.stats__header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.stats__item {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: rgba(14, 14, 28, 0.6);
+  border: 1px solid rgba(var(--accent-rgb), 0.12);
+  border-radius: var(--radius-md);
+  transition: all var(--transition);
+  backdrop-filter: blur(8px);
+}
+
+.stats__item:hover {
+  border-color: rgba(var(--cyan-rgb), 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 0 30px rgba(var(--purple-rgb), 0.15);
+}
+
+.stats__number {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  background: var(--gradient-neon);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stats__item p {
+  font-size: 0.85rem;
+  color: var(--color-gray-300);
+  line-height: 1.4;
+}
+
+.stats__visual {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 21/9;
+}
+
+.stats__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.stats__hours {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 1.5rem 2rem;
+  background: rgba(5, 5, 8, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
+  border-radius: var(--radius-md);
+  min-width: 280px;
+  box-shadow: 0 0 30px rgba(var(--purple-rgb), 0.12);
+}
+
+.stats__hours h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  color: var(--color-cyan);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.stats__hour-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stats__hour-row:last-child {
+  border-bottom: none;
+}
+
+.stats__hour-row span:first-child {
+  color: var(--color-gray-300);
+}
+
+.stats__hour-row span:last-child {
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats__visual {
+    aspect-ratio: 16/10;
+  }
+
+  .stats__hours {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin-top: -3rem;
+    margin-inline: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats__grid {
+    grid-template-columns: 1fr;
+  }
+}

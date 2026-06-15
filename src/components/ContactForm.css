@@ -1,0 +1,102 @@
+.contact-form {
+  width: min(560px, 100%);
+  margin: 0 auto 2rem;
+  padding: 2rem;
+  background: rgba(14, 14, 28, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 0 40px rgba(var(--purple-rgb), 0.12);
+  text-align: left;
+}
+
+.contact-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.contact-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.contact-form__field span {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-cyan);
+}
+
+.contact-form__field input,
+.contact-form__field textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--color-white);
+  background: rgba(5, 5, 8, 0.6);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+  resize: vertical;
+}
+
+.contact-form__field input::placeholder,
+.contact-form__field textarea::placeholder {
+  color: var(--color-gray-500);
+}
+
+.contact-form__field input:focus,
+.contact-form__field textarea:focus {
+  outline: none;
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 0 3px rgba(var(--cyan-rgb), 0.15);
+}
+
+.contact-form__submit {
+  width: 100%;
+  padding: 1rem;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+.contact-form__submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.contact-form__feedback {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+}
+
+.contact-form__feedback--success {
+  color: var(--color-cyan-bright);
+  background: rgba(var(--cyan-rgb), 0.1);
+  border: 1px solid rgba(var(--cyan-rgb), 0.25);
+}
+
+.contact-form__feedback--error {
+  color: #ff8a8a;
+  background: rgba(255, 80, 80, 0.08);
+  border: 1px solid rgba(255, 80, 80, 0.2);
+}
+
+@media (max-width: 600px) {
+  .contact-form {
+    padding: 1.5rem;
+  }
+
+  .contact-form__row {
+    grid-template-columns: 1fr;
+    margin-bottom: 0;
+  }
+}
