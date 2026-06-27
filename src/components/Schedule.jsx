@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { SCHEDULE, SCHEDULE_KEYS } from '../data/content';
+import { useSiteContent } from '../context/SiteContentContext';
 import { animateScheduleClasses } from '../animations/liquidScroll';
 import { SectionGlow } from './ScrollEffects';
 import './Schedule.css';
 
 export default function Schedule() {
   const { t } = useLanguage();
+  const { content } = useSiteContent();
+  const { schedule, scheduleKeys } = content;
   const classesRef = useRef(null);
   const [activeDay, setActiveDay] = useState('monday');
 
@@ -29,7 +31,7 @@ export default function Schedule() {
         </div>
 
         <div className="schedule__days" data-liquid-stagger>
-          {SCHEDULE_KEYS.map((key) => (
+          {scheduleKeys.map((key) => (
             <button
               key={key}
               type="button"
@@ -43,7 +45,7 @@ export default function Schedule() {
         </div>
 
         <div className="schedule__classes" ref={classesRef}>
-          {SCHEDULE[activeDay].map((cls) => (
+          {schedule[activeDay].map((cls) => (
             <div key={`${cls.time}-${cls.name}`} className="schedule__class">
               <span className="schedule__time">{cls.time}</span>
               <div className="schedule__class-info">

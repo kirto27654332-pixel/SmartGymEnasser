@@ -1,12 +1,18 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import Logo from './Logo';
 import LanguageToggle from './LanguageToggle';
 import NavbarSocial from './NavbarSocial';
+import AdminSwitch from './AdminSwitch';
 import './Navbar.css';
+import '../pages/auth.css';
+import './AdminSwitch.css';
 
 export default function Navbar() {
   const { t } = useLanguage();
+  const { profile, firstName, isAdmin, logout } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -31,6 +37,17 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
+  const closeMenu = () => setMenuOpen(false);
+
+  const userBlock = profile && (
+    <div className="navbar__welcome">
+      <span>{t.nav.welcome}, <strong>{firstName}</strong></span>
+      <button type="button" className="navbar__logout" onClick={logout}>
+        {t.auth.logout}
+      </button>
+    </div>
+  );
+
   return (
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__inner container">
@@ -42,26 +59,40 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className="navbar__link"
-              onClick={() => setMenuOpen(false)}
+              onClick={closeMenu}
             >
               {link.label}
             </a>
           ))}
           <div className="navbar__nav-mobile">
             <NavbarSocial className="navbar-social--mobile" />
-            <a href="tel:+21658805805" className="btn btn-primary navbar__cta-mobile">
-              {t.nav.join}
-            </a>
+            {profile ? (
+              <div className="navbar__welcome navbar__welcome--mobile">
+                <span>{t.nav.welcome}, <strong>{firstName}</strong></span>
+                {isAdmin && <AdminSwitch variant="mobile" />}
+                <button type="button" className="navbar__logout" onClick={logout}>
+                  {t.auth.logout}
+                </button>
+              </div>
+            ) : (
+              <Link to="/join" className="btn btn-primary navbar__cta-mobile" onClick={closeMenu}>
+                {t.nav.join}
+              </Link>
+            )}
             <LanguageToggle className="lang-toggle--mobile navbar__lang-mobile" />
           </div>
         </nav>
 
         <div className="navbar__actions">
           <NavbarSocial className="navbar-social--desktop" />
+          {userBlock}
+          {isAdmin && <AdminSwitch variant="navbar" />}
           <LanguageToggle className="navbar__lang" />
-          <a href="tel:+21658805805" className="btn btn-primary navbar__cta">
-            {t.nav.join}
-          </a>
+          {profile ? null : (
+            <Link to="/join" className="btn btn-primary navbar__cta">
+              {t.nav.join}
+            </Link>
+          )}
         </div>
 
         <button

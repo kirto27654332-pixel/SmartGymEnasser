@@ -1,10 +1,10 @@
-import { useLanguage } from '../context/LanguageContext';
-import { GYM_INFO } from '../data/content';
+import { useLanguage, useGymInfo } from '../context/LanguageContext';
 import Logo from './Logo';
 import './Footer.css';
 
 export default function Footer() {
   const { t } = useLanguage();
+  const gymInfo = useGymInfo();
 
   return (
     <footer id="contact" className="footer" data-liquid="up">
@@ -25,15 +25,15 @@ export default function Footer() {
 
         <div className="footer__contact">
           <h4>{t.footer.contact}</h4>
-          <a href={`tel:+216${GYM_INFO.phone.replace(/\s/g, '')}`}>{GYM_INFO.phoneFull}</a>
-          <a href={`mailto:${GYM_INFO.email}`}>{GYM_INFO.email}</a>
-          <a href={GYM_INFO.instagramUrl} target="_blank" rel="noopener noreferrer">
-            @{GYM_INFO.instagram}
+          <a href={`tel:+216${gymInfo.phone.replace(/\s/g, '')}`}>{gymInfo.phoneFull}</a>
+          <a href={`mailto:${gymInfo.email}`}>{gymInfo.email}</a>
+          <a href={gymInfo.instagramUrl} target="_blank" rel="noopener noreferrer">
+            @{gymInfo.instagram}
           </a>
           <p className="footer__address">
             {t.footer.location}<br />
             {t.footer.city}<br />
-            <a href={GYM_INFO.mapsUrl} target="_blank" rel="noopener noreferrer" className="footer__maps-link">
+            <a href={gymInfo.mapsUrl} target="_blank" rel="noopener noreferrer" className="footer__maps-link">
               {t.footer.viewOnMaps}
             </a>
           </p>
@@ -44,7 +44,7 @@ export default function Footer() {
         <div className="container footer__bar-inner">
           <span>© {new Date().getFullYear()} Smart Gym Ennasr. {t.footer.rights}</span>
           <span className="footer__bar-phone">
-            {t.footer.callUs} <strong>{GYM_INFO.phone}</strong>
+            {t.footer.callUs} <strong>{gymInfo.phone}</strong>
           </span>
         </div>
       </div>

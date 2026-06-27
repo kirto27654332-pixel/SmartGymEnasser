@@ -1,4 +1,4 @@
-import { GYM_INFO } from '../data/content';
+import { useGymInfo } from '../context/LanguageContext';
 import './NavbarSocial.css';
 
 function InstagramIcon() {
@@ -33,20 +33,22 @@ function PhoneIcon() {
 }
 
 export default function NavbarSocial({ className = '' }) {
+  const gymInfo = useGymInfo();
+
   return (
     <div className={`navbar-social ${className}`}>
       <a
-        href={`tel:+216${GYM_INFO.phone.replace(/\s/g, '')}`}
+        href={`tel:+216${gymInfo.phone.replace(/\s/g, '')}`}
         className="navbar-social__phone"
-        aria-label={GYM_INFO.phoneFull}
+        aria-label={gymInfo.phoneFull}
       >
         <PhoneIcon />
-        <span>{GYM_INFO.phone}</span>
+        <span>{gymInfo.phone}</span>
       </a>
 
       <div className="navbar-social__icons">
         <a
-          href={GYM_INFO.instagramUrl}
+          href={gymInfo.instagramUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="navbar-social__icon"
@@ -55,7 +57,7 @@ export default function NavbarSocial({ className = '' }) {
           <InstagramIcon />
         </a>
         <a
-          href={GYM_INFO.facebookUrl}
+          href={gymInfo.facebookUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="navbar-social__icon"

@@ -1,5 +1,5 @@
-import { useLanguage } from '../context/LanguageContext';
-import { GYM_INFO } from '../data/content';
+import { useLanguage, useGymInfo } from '../context/LanguageContext';
+import { useSiteContent } from '../context/SiteContentContext';
 import { SectionGlow } from './ScrollEffects';
 import './Location.css';
 
@@ -7,12 +7,15 @@ const INFO_ICONS = ['📍', '🏢', '🅿️', '📞'];
 
 export default function Location() {
   const { t } = useLanguage();
+  const gymInfo = useGymInfo();
+  const { content } = useSiteContent();
+  const coords = gymInfo.coords ?? content.gymInfo.coords;
 
   const infoItems = [
     { title: t.location.cards.address, value: t.location.cards.addressValue },
     { title: t.location.cards.floor, value: t.location.cards.floorValue },
     { title: t.location.cards.parking, value: t.location.cards.parkingValue },
-    { title: t.location.cards.phone, value: GYM_INFO.phoneFull, href: `tel:+216${GYM_INFO.phone.replace(/\s/g, '')}` },
+    { title: t.location.cards.phone, value: gymInfo.phoneFull, href: `tel:+216${gymInfo.phone.replace(/\s/g, '')}` },
   ];
 
   return (
@@ -50,7 +53,7 @@ export default function Location() {
 
             <div className="location__actions">
               <a
-                href={GYM_INFO.mapsUrl}
+                href={gymInfo.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary location__btn"
@@ -68,7 +71,7 @@ export default function Location() {
             <div className="location__coords" aria-hidden>
               <span className="location__coords-label">GPS</span>
               <span className="location__coords-value">
-                {GYM_INFO.coords.lat.toFixed(4)}° N · {GYM_INFO.coords.lng.toFixed(4)}° E
+                {coords.lat.toFixed(4)}° N · {coords.lng.toFixed(4)}° E
               </span>
             </div>
           </div>
@@ -85,7 +88,7 @@ export default function Location() {
               <div className="location__map-inner">
                 <iframe
                   title={t.location.mapTitle}
-                  src={GYM_INFO.mapsEmbedUrl}
+                  src={gymInfo.mapsEmbedUrl ?? content.gymInfo.mapsEmbedUrl}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   allowFullScreen
@@ -99,7 +102,7 @@ export default function Location() {
               </div>
 
               <a
-                href={GYM_INFO.mapsUrl}
+                href={gymInfo.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="location__map-badge"

@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { useSiteContent } from '../context/SiteContentContext';
 import { SectionGlow } from './ScrollEffects';
 import './WhyChooseUs.css';
 
 export default function WhyChooseUs() {
   const { t } = useLanguage();
+  const { content } = useSiteContent();
+  const whyImage = content.images?.why ?? '/images/gym/instructor-class.jpg';
   const [openIndex, setOpenIndex] = useState(1);
   const icons = ['⚡', '🎯', '🔥', '🤝'];
 
@@ -13,7 +16,7 @@ export default function WhyChooseUs() {
       <SectionGlow variant="purple" />
       <div className="container why__grid">
         <div className="why__image" data-liquid="left">
-          <img src="/images/gym/instructor-class.jpg" alt={t.why.imageAlt} />
+          <img src={whyImage} alt={t.why.imageAlt} />
           <div className="why__image-glow" />
         </div>
 

@@ -1,10 +1,14 @@
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { useSiteContent } from '../context/SiteContentContext';
 import ThreeBackground from './ThreeBackground';
 import { SectionGlow } from './ScrollEffects';
 import './Hero.css';
 
 export default function Hero() {
   const { t } = useLanguage();
+  const { content } = useSiteContent();
+  const heroImage = content.images?.hero ?? '/images/gym/boxing-class.jpg';
 
   return (
     <section id="accueil" className="hero" data-section-glow>
@@ -31,12 +35,12 @@ export default function Hero() {
           <p className="hero__desc">{t.hero.desc}</p>
 
           <div className="hero__actions">
-            <a href="tel:+21658805805" className="btn btn-primary">
+            <Link to="/join" className="btn btn-primary">
               {t.hero.join}
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
             <a href="#planning" className="btn btn-outline hero__video-btn">
               <span className="hero__play">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -63,7 +67,7 @@ export default function Hero() {
 
         <div className="hero__visual">
           <div className="hero__image-wrap">
-            <img src="/images/gym/boxing-class.jpg" alt={t.hero.imageAlt} className="hero__image" />
+            <img src={heroImage} alt={t.hero.imageAlt} className="hero__image" />
             <div className="hero__image-overlay" />
           </div>
           <div className="hero__floating-card">

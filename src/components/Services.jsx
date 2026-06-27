@@ -1,11 +1,13 @@
 import { useRef, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { SERVICE_ITEMS } from '../data/content';
+import { useSiteContent } from '../context/SiteContentContext';
 import { SectionGlow } from './ScrollEffects';
 import './Services.css';
 
 export default function Services() {
   const { t } = useLanguage();
+  const { content } = useSiteContent();
+  const serviceItems = content.serviceItems;
   const trackRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -14,7 +16,7 @@ export default function Services() {
     if (!track) return;
     const cardWidth = track.querySelector('.service-card')?.offsetWidth || 320;
     const gap = 24;
-    const newIndex = Math.max(0, Math.min(SERVICE_ITEMS.length - 1, activeIndex + dir));
+    const newIndex = Math.max(0, Math.min(serviceItems.length - 1, activeIndex + dir));
     setActiveIndex(newIndex);
     track.scrollTo({ left: newIndex * (cardWidth + gap), behavior: 'smooth' });
   };
@@ -36,7 +38,7 @@ export default function Services() {
       </div>
 
       <div className="services__track" ref={trackRef} data-liquid-stagger>
-        {SERVICE_ITEMS.map((service) => {
+        {serviceItems.map((service) => {
           const info = t.services.items[service.id];
           return (
             <article key={service.id} className="service-card" data-liquid-child>

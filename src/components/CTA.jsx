@@ -1,11 +1,11 @@
-import { useLanguage } from '../context/LanguageContext';
-import { GYM_INFO } from '../data/content';
+import { useLanguage, useGymInfo } from '../context/LanguageContext';
 import ContactForm from './ContactForm';
 import { SectionGlow } from './ScrollEffects';
 import './CTA.css';
 
 export default function CTA() {
   const { t } = useLanguage();
+  const gymInfo = useGymInfo();
 
   return (
     <section className="cta" data-section-glow>
@@ -19,15 +19,15 @@ export default function CTA() {
 
         <div className="cta__actions">
           <a href="tel:+21658805805" className="btn btn-outline cta__btn">
-            {t.cta.call} — {GYM_INFO.phone}
+            {t.cta.call} — {gymInfo.phone}
           </a>
           <a
-            href={GYM_INFO.instagramUrl}
+            href={gymInfo.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-outline"
           >
-            @{GYM_INFO.instagram}
+            @{gymInfo.instagram}
           </a>
         </div>
       </div>
